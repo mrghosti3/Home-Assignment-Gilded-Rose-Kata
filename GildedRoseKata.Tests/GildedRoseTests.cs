@@ -186,7 +186,7 @@ namespace GildedRoseKata.Tests
             // Init
             IList<Item> agedBrie = new List<Item>()
             {
-                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80}
+                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 50}
             };
             GildedRose app = new GildedRose(agedBrie);
 
@@ -194,7 +194,41 @@ namespace GildedRoseKata.Tests
             app.UpdateQuality(4);
 
             //Assert
-            Assert.IsTrue(agedBrie[0].Quality == 80);
+            Assert.IsTrue(agedBrie[0].Quality == 50);
+        }
+
+        [TestMethod]
+        public void UpdateQuality_NormalItem_BeforeSellIn()
+        {
+            // Init
+            IList<Item> agedBrie = new List<Item>()
+            {
+                new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20}
+            };
+            GildedRose app = new GildedRose(agedBrie);
+
+            //Action
+            app.UpdateQuality(1);
+
+            //Assert
+            Assert.IsTrue(agedBrie[0].Quality == 4);
+        }
+
+        [TestMethod]
+        public void UpdateQuality_NormalItem_AfterSellIn()
+        {
+            // Init
+            IList<Item> agedBrie = new List<Item>()
+            {
+                new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20}
+            };
+            GildedRose app = new GildedRose(agedBrie);
+
+            //Action
+            app.UpdateQuality(11);
+
+            //Assert
+            Assert.IsTrue(agedBrie[0].Quality == 2);
         }
     }
 }
