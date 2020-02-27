@@ -40,7 +40,7 @@ namespace GildedRoseKata
             var app = new GildedRose(Items);
 
 
-            for (var i = 0; i < 31; i++)
+            for (var i = 0; i < 31; ++i)
             {
                 Console.WriteLine("-------- day " + i + " --------");
                 Console.WriteLine("name, sellIn, quality");
@@ -49,7 +49,7 @@ namespace GildedRoseKata
                     Console.WriteLine(Items[j]);
                 }
                 Console.WriteLine("");
-                app.UpdateQuality();
+                app.UpdateQuality(i);
             }
         }
     }
