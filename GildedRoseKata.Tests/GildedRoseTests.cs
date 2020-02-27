@@ -17,7 +17,7 @@ namespace GildedRoseKata.Tests
             GildedRose app = new GildedRose(agedBrie);
 
             //Action
-            app.UpdateQuality();
+            app.UpdateQuality(0);
 
             //Assert
             Assert.IsTrue(agedBrie[0].Quality == 1);
@@ -34,8 +34,8 @@ namespace GildedRoseKata.Tests
             GildedRose app = new GildedRose(agedBrie);
 
             //Action
-            app.UpdateQuality();
-            app.UpdateQuality();
+            app.UpdateQuality(0);
+            app.UpdateQuality(0);
 
             //Assert
             Assert.IsTrue(agedBrie[0].Quality == 2);
