@@ -54,6 +54,17 @@ namespace GildedRoseKata
                         Items[i].Quality -= 2;
                     }
                 }
+                else if (!Items[i].Name.StartsWith("Sulfuras"))
+                {
+                    if (Items[i].SellIn < day)
+                    {
+                        Items[i].Quality -= 2;
+                    }
+                    else
+                    {
+                        --Items[i].Quality;
+                    }
+                }
             }
         }
     }
