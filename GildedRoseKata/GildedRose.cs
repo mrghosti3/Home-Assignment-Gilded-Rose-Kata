@@ -18,7 +18,35 @@ namespace GildedRoseKata
         {
             for (int i = 0; i < Items.Count; ++i)
             {
-                //
+                if (Items[i].Name == "Aged Brie" && Items[i].Quality < 50)
+                {
+                    ++Items[i].Quality;
+                }
+                else if (Items[i].Name.StartsWith("Backstage passes"))
+                {
+                    int daysTillConcert = Items[i].SellIn - day;
+
+                    if (daysTillConcert < 0)
+                    {
+                        Items[i].Quality = 0;
+                    }
+                    else if (daysTillConcert <= 5)
+                    {
+                        Items[i].Quality += 3;
+                    }
+                    else if (daysTillConcert <= 10)
+                    {
+                        Items[i].Quality += 2;
+                    }
+                    else
+                    {
+                        ++Items[i].Quality;
+                    }
+                }
+                else if (Items[i].Name.StartsWith("Sulfuras"))
+                {
+                    //
+                }
             }
         }
 
