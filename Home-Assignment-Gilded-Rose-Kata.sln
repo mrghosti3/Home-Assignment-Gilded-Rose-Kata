@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRoseKata", "GildedRoseKata\GildedRoseKata.csproj", "{1CA09A13-6B44-4FE5-B27B-349EC084BC8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRoseKata.Tests", "GildedRoseKata.Tests\GildedRoseKata.Tests.csproj", "{01F0460C-BFE3-4FEB-97C4-B408DCDB01EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1CA09A13-6B44-4FE5-B27B-349EC084BC8B} = {1CA09A13-6B44-4FE5-B27B-349EC084BC8B}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A69CB74F-5E3D-4711-808B-E2E7186EB662}"
 	ProjectSection(SolutionItems) = preProject
