@@ -43,9 +43,16 @@ namespace GildedRoseKata
                         ++Items[i].Quality;
                     }
                 }
-                else if (Items[i].Name.StartsWith("Sulfuras"))
+                else if (Items[i].Name.StartsWith("Conjured"))
                 {
-                    //
+                    if (Items[i].SellIn < day)
+                    {
+                        Items[i].Quality -= 4;
+                    }
+                    else
+                    {
+                        Items[i].Quality -= 2;
+                    }
                 }
             }
         }
