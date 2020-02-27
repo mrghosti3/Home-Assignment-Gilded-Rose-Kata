@@ -4,10 +4,22 @@ namespace GildedRoseKata
 {
     public class GildedRose
     {
+        //Data
         IList<Item> Items;
+
+        //Constructor
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
+        }
+
+        //Methods
+        public void UpdateQuality(int day)
+        {
+            for (int i = 0; i < Items.Count; ++i)
+            {
+                //
+            }
         }
 
         public void UpdateQuality()
