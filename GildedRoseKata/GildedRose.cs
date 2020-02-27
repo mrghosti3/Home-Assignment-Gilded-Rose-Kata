@@ -14,6 +14,13 @@ namespace GildedRoseKata
         }
 
         //Methods
+
+        /* I rewrote the whole function as it was to complicated to analyze.
+         * 
+         * There are no calculations for Sulfuras, because there quality doesn't change
+         * but if the item is not any of other item specified in the requirements and especialy Sulfuras
+         * it will most definetly normal item.
+         */
         public void UpdateQuality(int day)
         {
             for (int i = 0; i < Items.Count; ++i)
