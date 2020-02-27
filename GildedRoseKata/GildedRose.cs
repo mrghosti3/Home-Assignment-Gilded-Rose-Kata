@@ -22,6 +22,7 @@ namespace GildedRoseKata
             }
         }
 
+        /*
         public void UpdateQuality()
         {
             for (var i = 0; i < Items.Count; i++)
@@ -97,5 +98,6 @@ namespace GildedRoseKata
                 }
             }
         }
+        */
     }
 }
