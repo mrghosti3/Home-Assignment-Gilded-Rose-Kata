@@ -42,7 +42,7 @@ namespace GildedRoseKata.Tests
         }
 
         [TestMethod]
-        public void UpdateQuality_BackstagePasses_UpdateCorrect()
+        public void UpdateQuality_BackstagePasses_MoreThan10DaysToConcert()
         {
             //Arrange
             IList<Item> backstagePass = new List<Item>()
@@ -64,7 +64,7 @@ namespace GildedRoseKata.Tests
         }
 
         [TestMethod]
-        public void UpdateQuality_BackstagePasses2_UpdateCorrect()
+        public void UpdateQuality_BackstagePasses_10DaysToConcert()
         {
             //Arrange
             IList<Item> backstagePass = new List<Item>()
@@ -86,7 +86,7 @@ namespace GildedRoseKata.Tests
         }
 
         [TestMethod]
-        public void UpdateQuality_BackstagePasses3_UpdateCorrect()
+        public void UpdateQuality_BackstagePasses_5DaysToConcert()
         {
             //Arrange
             IList<Item> backstagePass = new List<Item>()
@@ -108,7 +108,7 @@ namespace GildedRoseKata.Tests
         }
 
         [TestMethod]
-        public void UpdateQuality_BackstagePasses4_UpdateCorrect()
+        public void UpdateQuality_BackstagePasses_AfterConcert()
         {
             //Arrange
             IList<Item> backstagePass = new List<Item>()
@@ -127,6 +127,40 @@ namespace GildedRoseKata.Tests
 
             //Assert
             Assert.IsTrue(backstagePass[0].Quality == 0);
+        }
+
+        [TestMethod]
+        public void UpdateQuality_Conjured_BeforeSellIn()
+        {
+            // Init
+            IList<Item> agedBrie = new List<Item>()
+            {
+                new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+            };
+            GildedRose app = new GildedRose(agedBrie);
+
+            //Action
+            app.UpdateQuality(1);
+
+            //Assert
+            Assert.IsTrue(agedBrie[0].Quality == 4);
+        }
+
+        [TestMethod]
+        public void UpdateQuality_Conjured_AfterSellIn()
+        {
+            // Init
+            IList<Item> agedBrie = new List<Item>()
+            {
+                new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+            };
+            GildedRose app = new GildedRose(agedBrie);
+
+            //Action
+            app.UpdateQuality(4);
+
+            //Assert
+            Assert.IsTrue(agedBrie[0].Quality == 2);
         }
     }
 }
