@@ -211,7 +211,7 @@ namespace GildedRoseKata.Tests
             app.UpdateQuality(1);
 
             //Assert
-            Assert.IsTrue(agedBrie[0].Quality == 4);
+            Assert.IsTrue(agedBrie[0].Quality == 19);
         }
 
         [TestMethod]
@@ -228,7 +228,7 @@ namespace GildedRoseKata.Tests
             app.UpdateQuality(11);
 
             //Assert
-            Assert.IsTrue(agedBrie[0].Quality == 2);
+            Assert.IsTrue(agedBrie[0].Quality == 18);
         }
     }
 }
