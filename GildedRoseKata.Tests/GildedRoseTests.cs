@@ -162,5 +162,39 @@ namespace GildedRoseKata.Tests
             //Assert
             Assert.IsTrue(agedBrie[0].Quality == 2);
         }
+
+        [TestMethod]
+        public void UpdateQuality_Sulfuras_OnSellIn()
+        {
+            // Init
+            IList<Item> agedBrie = new List<Item>()
+            {
+                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80}
+            };
+            GildedRose app = new GildedRose(agedBrie);
+
+            //Action
+            app.UpdateQuality(0);
+
+            //Assert
+            Assert.IsTrue(agedBrie[0].Quality == 80);
+        }
+
+        [TestMethod]
+        public void UpdateQuality_Sulfuras_AfterSellIn()
+        {
+            // Init
+            IList<Item> agedBrie = new List<Item>()
+            {
+                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80}
+            };
+            GildedRose app = new GildedRose(agedBrie);
+
+            //Action
+            app.UpdateQuality(4);
+
+            //Assert
+            Assert.IsTrue(agedBrie[0].Quality == 80);
+        }
     }
 }
