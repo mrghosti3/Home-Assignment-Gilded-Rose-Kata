@@ -4,16 +4,12 @@ namespace GildedRoseKata
 {
     public class GildedRose
     {
-        //Data
         IList<Item> Items;
 
-        //Constructor
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
         }
-
-        //Methods
 
         /* I rewrote the whole function as it was to complicated to analyze.
          * 
