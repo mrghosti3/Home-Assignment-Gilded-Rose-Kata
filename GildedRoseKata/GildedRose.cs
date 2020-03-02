@@ -25,9 +25,23 @@ namespace GildedRoseKata
         {
             for (int i = 0; i < Items.Count; ++i)
             {
-                if (Items[i].Name == "Aged Brie" && Items[i].Quality < 50)
+                if (Items[i].Name == "Aged Brie")
                 {
-                    ++Items[i].Quality;
+                    if (Items[i].Quality < 50)
+                    {
+                        if (Items[i].SellIn < day)
+                        {
+                            Items[i].Quality += 2;
+                        }
+                        else
+                        {
+                            ++Items[i].Quality;
+                        }
+                    }
+                    else
+                    {
+                        Items[i].Quality = 50;
+                    }
                 }
                 else if (Items[i].Name.StartsWith("Backstage passes"))
                 {
@@ -37,39 +51,63 @@ namespace GildedRoseKata
                     {
                         Items[i].Quality = 0;
                     }
-                    else if (daysTillConcert <= 5)
+                    else if (Items[i].Quality < 50)
                     {
-                        Items[i].Quality += 3;
+                        if (daysTillConcert <= 5)
+                        {
+                            Items[i].Quality += 3;
+                        }
+                        else if (daysTillConcert <= 10)
+                        {
+                            Items[i].Quality += 2;
+                        }
+                        else
+                        {
+                            ++Items[i].Quality;
+                        }
                     }
-                    else if (daysTillConcert <= 10)
+                    
+                    if (Items[i].Quality > 50)
                     {
-                        Items[i].Quality += 2;
-                    }
-                    else
-                    {
-                        ++Items[i].Quality;
+                        Items[i].Quality = 50;
                     }
                 }
                 else if (Items[i].Name.StartsWith("Conjured"))
                 {
-                    if (Items[i].SellIn < day)
+                    if (Items[i].Quality < 0)
                     {
-                        Items[i].Quality -= 4;
+                        if (Items[i].SellIn < day)
+                        {
+                            Items[i].Quality -= 4;
+                        }
+                        else
+                        {
+                            Items[i].Quality -= 2;
+                        }
                     }
-                    else
+
+                    if (Items[i].Quality > 0)
                     {
-                        Items[i].Quality -= 2;
+                        Items[i].Quality = 0;
                     }
                 }
                 else if (!Items[i].Name.StartsWith("Sulfuras"))
                 {
-                    if (Items[i].SellIn < day)
+                    if (Items[i].Quality > 0)
                     {
-                        Items[i].Quality -= 2;
+                        if (Items[i].SellIn < day)
+                        {
+                            Items[i].Quality -= 2;
+                        }
+                        else
+                        {
+                            --Items[i].Quality;
+                        }
                     }
-                    else
+
+                    if (Items[i].Quality < 0)
                     {
-                        --Items[i].Quality;
+                        Items[i].Quality = 0;
                     }
                 }
             }
