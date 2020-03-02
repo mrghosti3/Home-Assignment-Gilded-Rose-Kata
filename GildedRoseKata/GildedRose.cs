@@ -4,6 +4,11 @@ namespace GildedRoseKata
 {
     public class GildedRose
     {
+        private readonly string[] LEGENDARY_ITEMS = new string[]
+        {
+            "Sulfuras"
+        };
+
         IList<Item> Items;
 
         public GildedRose(IList<Item> Items)
@@ -21,92 +26,108 @@ namespace GildedRoseKata
         {
             for (int i = 0; i < Items.Count; ++i)
             {
-                if (Items[i].Name == "Aged Brie")
+                if (NotLegendaryItem(Items[i].Name))
                 {
-                    if (Items[i].Quality < 50)
+                    if (Items[i].Name == "Aged Brie")
                     {
-                        if (Items[i].SellIn < day)
+                        if (Items[i].Quality < 50)
                         {
-                            Items[i].Quality += 2;
+                            if (Items[i].SellIn < day)
+                            {
+                                Items[i].Quality += 2;
+                            }
+                            else
+                            {
+                                ++Items[i].Quality;
+                            }
                         }
                         else
                         {
-                            ++Items[i].Quality;
+                            Items[i].Quality = 50;
+                        }
+                    }
+                    else if (Items[i].Name.StartsWith("Backstage passes"))
+                    {
+                        int daysTillConcert = Items[i].SellIn - day;
+
+                        if (daysTillConcert < 0)
+                        {
+                            Items[i].Quality = 0;
+                        }
+                        else if (Items[i].Quality < 50)
+                        {
+                            if (daysTillConcert <= 5)
+                            {
+                                Items[i].Quality += 3;
+                            }
+                            else if (daysTillConcert <= 10)
+                            {
+                                Items[i].Quality += 2;
+                            }
+                            else
+                            {
+                                ++Items[i].Quality;
+                            }
+                        }
+
+                        if (Items[i].Quality > 50)
+                        {
+                            Items[i].Quality = 50;
+                        }
+                    }
+                    else if (Items[i].Name.StartsWith("Conjured"))
+                    {
+                        if (Items[i].Quality < 0)
+                        {
+                            if (Items[i].SellIn < day)
+                            {
+                                Items[i].Quality -= 4;
+                            }
+                            else
+                            {
+                                Items[i].Quality -= 2;
+                            }
+                        }
+
+                        if (Items[i].Quality > 0)
+                        {
+                            Items[i].Quality = 0;
                         }
                     }
                     else
                     {
-                        Items[i].Quality = 50;
-                    }
-                }
-                else if (Items[i].Name.StartsWith("Backstage passes"))
-                {
-                    int daysTillConcert = Items[i].SellIn - day;
+                        if (Items[i].Quality > 0)
+                        {
+                            if (Items[i].SellIn < day)
+                            {
+                                Items[i].Quality -= 2;
+                            }
+                            else
+                            {
+                                --Items[i].Quality;
+                            }
+                        }
 
-                    if (daysTillConcert < 0)
-                    {
-                        Items[i].Quality = 0;
-                    }
-                    else if (Items[i].Quality < 50)
-                    {
-                        if (daysTillConcert <= 5)
+                        if (Items[i].Quality < 0)
                         {
-                            Items[i].Quality += 3;
+                            Items[i].Quality = 0;
                         }
-                        else if (daysTillConcert <= 10)
-                        {
-                            Items[i].Quality += 2;
-                        }
-                        else
-                        {
-                            ++Items[i].Quality;
-                        }
-                    }
-                    
-                    if (Items[i].Quality > 50)
-                    {
-                        Items[i].Quality = 50;
-                    }
-                }
-                else if (Items[i].Name.StartsWith("Conjured"))
-                {
-                    if (Items[i].Quality < 0)
-                    {
-                        if (Items[i].SellIn < day)
-                        {
-                            Items[i].Quality -= 4;
-                        }
-                        else
-                        {
-                            Items[i].Quality -= 2;
-                        }
-                    }
-
-                    if (Items[i].Quality > 0)
-                    {
-                        Items[i].Quality = 0;
-                    }
-                }
-                else if (!Items[i].Name.StartsWith("Sulfuras"))
-                {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].SellIn < day)
-                        {
-                            Items[i].Quality -= 2;
-                        }
-                        else
-                        {
-                            --Items[i].Quality;
-                        }
-                    }
-
-                    if (Items[i].Quality < 0)
-                    {
-                        Items[i].Quality = 0;
                     }
                 }
             }
+        }
+
+        private bool NotLegendaryItem(string Name)
+        {
+            for (int i = 0; i < LEGENDARY_ITEMS.Length; ++i)
+            {
+                if (Name.Contains(LEGENDARY_ITEMS[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
